@@ -2,14 +2,41 @@
 
 import { Bell, Search, User } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
+import { useRouter } from 'next/navigation';
 
 export default function TopBar() {
   const [showProfile, setShowProfile] = useState(false);
+  const { user, signOut } = useAuth();
+  const router = useRouter();
+
+  // Si l'utilisateur n'est pas connecté, rediriger vers la page d'authentification
+  useEffect(() => {
+    if (!user) {
+      console.log('User not logged in, redirecting to auth page...');
+      router.push('/auth');
+    }
+  }, [user, router]);
 
   const toggleProfile = () => {
     setShowProfile(!showProfile);
   };
+
+  const handleSignOut = async () => {
+    console.log('User clicked sign out');
+    
+    try {
+      await signOut();
+      // La redirection est gérée dans la fonction signOut
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
+
+  if (!user) {
+    return null; // Ne pas afficher la topbar si l'utilisateur n'est pas connecté
+  }
 
   return (
     <header className="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-4 lg:px-6 sticky top-0 z-20">
@@ -46,11 +73,19 @@ export default function TopBar() {
             onClick={toggleProfile}
             className="flex items-center focus:outline-none"
           >
-            <div className="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
-              <User className="h-4 w-4" />
-            </div>
+            {user.photoURL ? (
+              <img 
+                src={user.photoURL} 
+                alt={user.displayName || "Profil"} 
+                className="h-8 w-8 rounded-full object-cover border border-gray-200"
+              />
+            ) : (
+              <div className="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                <User className="h-4 w-4" />
+              </div>
+            )}
             <span className="hidden md:block ml-2 text-sm font-medium">
-              John Doe
+              {user.displayName || user.email || "Utilisateur"}
             </span>
           </button>
 
@@ -69,12 +104,12 @@ export default function TopBar() {
                 Paramètres
               </Link>
               <div className="border-t border-gray-200 my-1"></div>
-              <Link
-                href="/auth"
-                className="block px-4 py-2 text-sm text-red-500 hover:bg-gray-100"
+              <button
+                onClick={handleSignOut}
+                className="block w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-100"
               >
                 Déconnexion
-              </Link>
+              </button>
             </div>
           )}
         </div>
