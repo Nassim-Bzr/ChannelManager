@@ -65,7 +65,7 @@ export default function Calendar({ events = [] }: CalendarProps) {
         </div>
       </div>
       <div>
-        <FullCalendar
+        <FullCalendar 
           plugins={[dayGridPlugin, timeGridPlugin]}
           initialView={currentView}
           locale={frLocale}

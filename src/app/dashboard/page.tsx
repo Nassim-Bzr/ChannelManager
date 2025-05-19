@@ -5,10 +5,10 @@ export default function DashboardPage() {
   return (
     <DashboardLayout>
       <div className="space-y-6">
-        <h1 className="text-2xl font-bold tracking-tight">Tableau de bord</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-black">Tableau de bord</h1>
         
         {/* Statistiques rapides */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 text-black">
           <StatCard 
             title="Revenus ce mois" 
             value="€4,550" 
@@ -44,23 +44,23 @@ export default function DashboardPage() {
           {/* Réservations récentes */}
           <div className="bg-white p-6 rounded-lg shadow-sm">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-medium">Réservations récentes</h2>
+              <h2 className="text-lg font-medium text-black">Réservations récentes</h2>
               <a href="/reservations" className="text-sm text-blue-600 hover:text-blue-800">
                 Voir tout
               </a>
             </div>
             <div className="space-y-4">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="flex items-start p-3 border-b border-gray-100">
+                <div key={i} className="flex items-start p-3 border-b border-black">
                   <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
                     <Home className="h-5 w-5 text-blue-700" />
                   </div>
                   <div className="flex-1">
                     <div className="flex justify-between">
-                      <p className="font-medium">Appartement Paris {i}</p>
-                      <span className="text-sm text-gray-500">il y a 2h</span>
+                      <p className="font-medium text-black">Appartement Paris {i}</p>
+                      <span className="text-sm text-black">il y a 2h</span>
                     </div>
-                    <p className="text-sm text-gray-600">Pierre Dubois · 12-15 Nov · €380</p>
+                    <p className="text-sm text-black">Pierre Dubois · 12-15 Nov · €380</p>
                   </div>
                 </div>
               ))}
@@ -70,21 +70,21 @@ export default function DashboardPage() {
           {/* Tâches récentes */}
           <div className="bg-white p-6 rounded-lg shadow-sm">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-medium">Tâches à venir</h2>
+              <h2 className="text-lg font-medium text-black">Tâches à venir</h2>
               <a href="/cleaning" className="text-sm text-blue-600 hover:text-blue-800">
                 Voir tout
               </a>
             </div>
             <div className="space-y-4">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="flex items-center p-3 border-b border-gray-100">
+                <div key={i} className="flex items-center p-3 border-b border-black">
                   <input
                     type="checkbox"
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <div className="ml-3 flex-1">
-                    <p className="font-medium">Ménage Appartement Lyon {i}</p>
-                    <p className="text-sm text-gray-600">14 Nov, 2023 · 14:00</p>
+                    <p className="font-medium text-black">Ménage Appartement Lyon {i}</p>
+                    <p className="text-sm text-black">14 Nov, 2023 · 14:00</p>
                   </div>
                   <span className="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">
                     À venir
@@ -98,7 +98,7 @@ export default function DashboardPage() {
         {/* Calendrier de la semaine */}
         <div className="bg-white p-6 rounded-lg shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-medium">Calendrier de la semaine</h2>
+            <h2 className="text-lg font-medium text-black     ">Calendrier de la semaine</h2>
             <a href="/calendar" className="text-sm text-blue-600 hover:text-blue-800">
               Voir tout
             </a>
@@ -106,7 +106,7 @@ export default function DashboardPage() {
           <div className="border rounded-lg overflow-hidden">
             <div className="grid grid-cols-7 text-center border-b">
               {['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].map((day) => (
-                <div key={day} className="py-2 font-medium text-sm text-gray-500">
+                <div key={day} className="py-2 font-medium text-sm text-black">
                   {day}
                 </div>
               ))}
@@ -114,7 +114,7 @@ export default function DashboardPage() {
             <div className="grid grid-cols-7 text-center h-48">
               {Array.from({ length: 7 }).map((_, i) => (
                 <div key={i} className="border-r last:border-r-0 border-b p-1 relative">
-                  <div className="text-xs text-gray-500 mb-1">{13 + i} Nov</div>
+                  <div className="text-xs text-black mb-1">{13 + i} Nov</div>
                   {i === 1 && (
                     <div className="absolute top-8 left-0 right-0 mx-1 p-1 text-xs bg-blue-100 text-blue-800 rounded overflow-hidden">
                       Arrivée: Famille Martin
@@ -153,7 +153,7 @@ function StatCard({ title, value, change, positive, icon }: StatCardProps) {
     <div className="bg-white p-6 rounded-lg shadow-sm">
       <div className="flex justify-between">
         <div>
-          <p className="text-sm font-medium text-gray-600">{title}</p>
+          <p className="text-sm font-medium text-black">{title}</p>
           <p className="text-2xl font-semibold mt-1">{value}</p>
           <div className={`flex items-center mt-2 text-sm ${positive ? 'text-green-600' : 'text-red-600'}`}>
             <span>{change}</span>

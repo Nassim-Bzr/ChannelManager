@@ -12,16 +12,16 @@ export default function LoginButton() {
   return (
     <div className="flex items-center gap-4">
       {user ? (
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 text-black">
           <img
             src={user.photoURL || '/default-avatar.png'}
             alt={user.displayName || 'User'}
-            className="w-8 h-8 rounded-full"
+            className="w-8 h-8 rounded-full text-black"
           />
-          <span className="text-sm font-medium">{user.displayName}</span>
+          <span className="text-sm text-black">{user.displayName}</span>
           <button
             onClick={signOut}
-            className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+            className="px-4 py-2 text-sm font-medium text-black bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
           >
             Déconnexion
           </button>

@@ -7,14 +7,14 @@ export default function StatsPage() {
     <DashboardLayout>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold tracking-tight">Statistiques</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-black">Statistiques</h1>
           <div className="flex space-x-2">
-            <select className="block rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+            <select className="text-black block rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
               <option>Année en cours</option>
               <option>2023</option>
               <option>2022</option>
             </select>
-            <select className="block rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+            <select className="text-black block rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
               <option>Tous les biens</option>
               <option>Appartement Paris 1</option>
               <option>Appartement Paris 2</option>
@@ -24,7 +24,7 @@ export default function StatsPage() {
         </div>
 
         {/* Cartes de stats */}
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className= "grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 text-black">
           <StatCard
             title="Revenus totaux"
             value="€38,450"
@@ -58,18 +58,18 @@ export default function StatsPage() {
         {/* Graphiques */}
         <div className="space-y-5">
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-lg font-medium mb-4">Revenus mensuels</h2>
+            <h2 className="text-lg font-medium mb-4 text-black">Revenus mensuels</h2>
             <RevenueChart />
           </div>
           
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
             <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h2 className="text-lg font-medium mb-4">Taux d&apos;occupation</h2>
+              <h2 className="text-lg font-medium mb-4 text-black">Taux d&apos;occupation</h2>
               <OccupancyChart />
             </div>
             
             <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h2 className="text-lg font-medium mb-4">Répartition par plateforme</h2>
+              <h2 className="text-lg font-medium mb-4 text-black">Répartition par plateforme</h2>
               <PlatformChart />
             </div>
           </div>
@@ -77,75 +77,75 @@ export default function StatsPage() {
           <div className="bg-white p-6 rounded-lg shadow-sm">
             <h2 className="text-lg font-medium mb-4">Statistiques détaillées</h2>
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-black">
+                <thead className="bg-white">
                   <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Propriété
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Revenus
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Nuitées
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Taux d&apos;occ.
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Rev. moyen
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-black">
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-black">
                       Appartement Paris 1
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                       €15,250
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                       98
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                       82%
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                       €155
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-black">
                       Appartement Paris 2
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                       €13,100
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                       87
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                       75%
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                       €150
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-black">
                       Appartement Lyon 1
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                       €10,100
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                       60
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                       68%
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                       €168
                     </td>
                   </tr>
@@ -172,7 +172,7 @@ function StatCard({ title, value, change, positive, icon }: StatCardProps) {
     <div className="bg-white p-6 rounded-lg shadow-sm">
       <div className="flex justify-between">
         <div>
-          <p className="text-sm font-medium text-gray-600">{title}</p>
+          <p className="text-sm font-medium text-black">{title}</p>
           <p className="text-2xl font-semibold mt-1">{value}</p>
           <div className={`flex items-center mt-2 text-sm ${positive ? 'text-green-600' : 'text-red-600'}`}>
             <span>{change}</span>

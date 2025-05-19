@@ -10,7 +10,7 @@ export default function ReservationsPage() {
     <DashboardLayout>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold tracking-tight">Réservations</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-black">Réservations</h1>
           <button className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
             <Plus className="h-4 w-4 mr-2" />
             Ajouter une réservation
@@ -36,12 +36,12 @@ export default function ReservationsPage() {
               <Filter className="h-4 w-4 mr-2" />
               Filtrer
             </button>
-            <select className="focus:ring-blue-500 focus:border-blue-500 h-10 py-0 pl-3 pr-8 border-gray-300 rounded-md">
+            <select className="focus:ring-blue-500 focus:border-blue-500 h-10 py-0 pl-3 pr-8 border-gray-300 rounded-md text-gray-900">
               <option>Toutes les propriétés</option>
               <option>Appartement Paris 1</option>
               <option>Appartement Paris 2</option>
             </select>
-            <select className="focus:ring-blue-500 focus:border-blue-500 h-10 py-0 pl-3 pr-8 border-gray-300 rounded-md">
+            <select className="focus:ring-blue-500 focus:border-blue-500 h-10 py-0 pl-3 pr-8 border-gray-300 rounded-md text-gray-900">
               <option>Tous les statuts</option>
               <option>Confirmé</option>
               <option>En attente</option>

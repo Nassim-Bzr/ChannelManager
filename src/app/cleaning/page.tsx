@@ -10,9 +10,9 @@ export default function CleaningTasksPage() {
     <DashboardLayout>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold tracking-tight">Tâches de ménage</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-black ">Tâches de ménage</h1>
           <button className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-            <Plus className="h-4 w-4 mr-2" />
+            <Plus className="h-4 w-4 mr-2 text-black" />
             Ajouter une tâche
           </button>
         </div>
@@ -26,7 +26,7 @@ export default function CleaningTasksPage() {
               </div>
               <input
                 type="text"
-                className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md"
+                className="font-medium focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md text-black"
                 placeholder="Rechercher une tâche"
               />
             </div>
@@ -40,10 +40,10 @@ export default function CleaningTasksPage() {
               <Calendar className="h-4 w-4 mr-2" />
               Date
             </button>
-            <select className="focus:ring-blue-500 focus:border-blue-500 h-10 py-0 pl-3 pr-8 border-gray-300 rounded-md">
-              <option>Tous les statuts</option>
-              <option>À faire</option>
-              <option>Terminé</option>
+            <select className="focus:ring-blue-500 focus:border-blue-500 h-10 py-0 pl-3 pr-8 border-gray-300 rounded-md text-black">
+              <option className="text-black font-medium">Tous les statuts</option>
+              <option className="text-black font-medium">À faire</option>
+              <option className="text-black font-medium">Terminé</option>
             </select>
           </div>
         </div>
@@ -95,26 +95,26 @@ export default function CleaningTasksPage() {
 
         {/* Actions Rapides */}
         <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h2 className="text-lg font-medium mb-4">Actions rapides</h2>
+          <h2 className="text-lg font-medium mb-4 text-black  ">Actions rapides</h2>
           <div className="space-y-2">
             <button className="w-full flex items-center justify-between p-3 text-left border border-gray-200 rounded-md hover:bg-gray-50">
               <div className="flex items-center">
                 <Calendar className="h-5 w-5 text-gray-400 mr-3" />
-                <span>Générer des tâches pour les départs/arrivées</span>
+                <span className="text-black font-medium">Générer des tâches pour les départs/arrivées</span>
               </div>
               <ChevronRight className="h-5 w-5 text-gray-400" />
             </button>
             <button className="w-full flex items-center justify-between p-3 text-left border border-gray-200 rounded-md hover:bg-gray-50">
               <div className="flex items-center">
                 <Users className="h-5 w-5 text-gray-400 mr-3" />
-                <span>Assigner des tâches</span>
+                <span className="text-black font-medium">Assigner des tâches</span>
               </div>
               <ChevronRight className="h-5 w-5 text-gray-400" />
             </button>
             <button className="w-full flex items-center justify-between p-3 text-left border border-gray-200 rounded-md hover:bg-gray-50">
               <div className="flex items-center">
                 <Repeat className="h-5 w-5 text-gray-400 mr-3" />
-                <span>Créer des tâches récurrentes</span>
+                <span className="text-black font-medium">Créer des tâches récurrentes</span>
               </div>
               <ChevronRight className="h-5 w-5 text-gray-400" />
             </button>
