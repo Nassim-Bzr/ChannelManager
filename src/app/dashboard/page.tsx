@@ -1,7 +1,17 @@
+"use client";
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import { BarChart, Home, Percent, TrendingUp, Users } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export default function DashboardPage() {
+  // Ajout du state pour les calendriers
+  const [calendars, setCalendars] = useState([]);
+  useEffect(() => {
+    fetch('/api/calendars')
+      .then(res => res.json())
+      .then(data => setCalendars(data));
+  }, []);
+
   return (
     <DashboardLayout>
       <div className="space-y-6">
@@ -134,6 +144,21 @@ export default function DashboardPage() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Liens iCal des appartements */}
+        <div className="bg-white p-6 rounded-lg shadow-sm mt-6">
+          <h2 className="text-lg font-medium text-black mb-4">Liens iCal de mes appartements</h2>
+          <ul>
+            {calendars.length === 0 && <li className="text-gray-500">Aucun lien iCal trouvé.</li>}
+            {calendars.map((cal: any) => (
+              <li key={cal.id} className="mb-2">
+                <span className="font-semibold text-black">Appartement #{cal.property_id} :</span> 
+                <a href={cal.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline mx-2">{cal.url}</a>
+                <span className="text-xs text-gray-500">(source: {cal.source})</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </DashboardLayout>
