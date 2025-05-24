@@ -12,6 +12,7 @@ import {
   SparklesIcon
 } from '@heroicons/react/24/outline';
 import axios from 'axios';
+import logoAirbnb from '/public/logo2.png';
 
 interface CalendarProps {
   events?: CalendarEvent[];
@@ -134,11 +135,54 @@ export default function Calendar({ events = [] }: CalendarProps) {
   const getBookingColor = (booking: Booking) => {
     if (booking.platform === 'airbnb') {
       if (booking.guest_name.includes('Not available')) {
-        return { bg: '#EF4444', border: '#DC2626', text: '#FFFFFF' }; // Rouge pour indisponible
+        return { bg: '#F87171', border: '#EF4444', text: '#FFFFFF' }; // Rouge clair pour indisponible
       }
-      return { bg: '#06B6D4', border: '#0891B2', text: '#FFFFFF' }; // Cyan pour Airbnb
+      return { bg: '#34D399', border: '#10B981', text: '#FFFFFF' }; // Vert pour Airbnb (comme Smoobu)
     }
-    return { bg: '#8B5CF6', border: '#7C3AED', text: '#FFFFFF' }; // Violet par défaut
+    return { bg: '#A78BFA', border: '#8B5CF6', text: '#FFFFFF' }; // Violet par défaut
+  };
+
+  const getBookingIcon = (booking: Booking) => {
+    if (booking.platform === 'airbnb') {
+      if (booking.guest_name.includes('Not available')) {
+        return (
+          <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center">
+            <span className="text-red-500 text-xs font-bold">✕</span>
+          </div>
+        ); // Icône rouge pour indisponible
+      }
+      return (
+        <img 
+          src={logoAirbnb.src} 
+          alt="Airbnb" 
+          className="w-4 h-4 object-contain filter brightness-0 invert"
+        />
+      ); // Logo Airbnb blanc pour réservations
+    }
+    return (
+      <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center">
+        <span className="text-purple-500 text-xs">📅</span>
+      </div>
+    ); // Icône calendrier pour autres plateformes
+  };
+
+  const getPlatformBadge = (booking: Booking) => {
+    if (booking.platform === 'airbnb') {
+      return (
+        <div className="flex items-center space-x-1">
+          <span className="text-xs font-bold bg-white/20 px-1.5 py-0.5 rounded">
+            {booking.guest_name.includes('Not available') ? 'BLOQUÉ' : 'AIRBNB'}
+          </span>
+        </div>
+      );
+    }
+    return (
+      <div className="flex items-center space-x-1">
+        <span className="text-xs font-bold bg-white/20 px-1.5 py-0.5 rounded">
+          {booking.platform.toUpperCase()}
+        </span>
+      </div>
+    );
   };
 
   const days = generateCalendarDays();
@@ -212,7 +256,7 @@ export default function Calendar({ events = [] }: CalendarProps) {
               }`}
             >
               <CalendarDaysIcon className="w-4 h-4 inline mr-2" />
-              Simple  
+              Simple   
             </button>
           </div>
         </div>
@@ -314,11 +358,60 @@ export default function Calendar({ events = [] }: CalendarProps) {
                         title={`${booking.guest_name} (${booking.platform})\n${new Date(booking.check_in).toLocaleDateString('fr-FR')} - ${new Date(booking.check_out).toLocaleDateString('fr-FR')}`}
                       >
                         {isBookingStart(day, booking) && (
-                          <div className="truncate px-2 flex items-center space-x-1">
-                            <SparklesIcon className="w-3 h-3" />
-                            <span className="font-semibold">
-                              {booking.guest_name.replace('Airbnb (Not available)', 'Indisponible')}
+                          <div className="truncate px-1 flex items-center space-x-1 w-full">
+                            <div className="flex items-center space-x-1 flex-shrink-0">
+                              <div className="flex-shrink-0">
+                                {booking.platform === 'airbnb' ? (
+                                  booking.guest_name.includes('Not available') ? (
+                                    <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center">
+                                      <span className="text-red-500 text-xs font-bold">✕</span>
+                                    </div>
+                                  ) : (
+                                    <img 
+                                      src={logoAirbnb.src} 
+                                      alt="Airbnb" 
+                                      className="w-4 h-4 object-contain filter brightness-0 invert"
+                                    />
+                                  )
+                                ) : (
+                                  <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center">
+                                    <span className="text-purple-500 text-xs">📅</span>
+                                  </div>
+                                )}
+                              </div>
+                              {getPlatformBadge(booking)}
+                            </div>
+                            <span className="font-semibold truncate">
+                              {booking.guest_name.includes('Not available') 
+                                ? 'Indisponible' 
+                                : booking.guest_name === 'Reserved' 
+                                  ? 'Réservé' 
+                                  : booking.guest_name
+                              }
                             </span>
+                          </div>
+                        )}
+                        {!isBookingStart(day, booking) && (
+                          <div className="flex items-center justify-center w-full h-full">
+                            <div className="opacity-75">
+                              {booking.platform === 'airbnb' ? (
+                                booking.guest_name.includes('Not available') ? (
+                                  <div className="w-3 h-3 bg-white rounded-full flex items-center justify-center">
+                                    <span className="text-red-500 text-xs font-bold">✕</span>
+                                  </div>
+                                ) : (
+                                  <img 
+                                    src={logoAirbnb.src} 
+                                    alt="Airbnb" 
+                                    className="w-3 h-3 object-contain filter brightness-0 invert"
+                                  />
+                                )
+                              ) : (
+                                <div className="w-3 h-3 bg-white rounded-full flex items-center justify-center">
+                                  <span className="text-purple-500 text-xs">📅</span>
+                                </div>
+                              )}
+                            </div>
                           </div>
                         )}
                       </div>
@@ -341,25 +434,65 @@ export default function Calendar({ events = [] }: CalendarProps) {
             </div>
             <div className="space-y-3">
               {upcomingBookings.slice(0, 3).map((booking) => (
-                <div key={booking.id} className="flex items-center justify-between text-sm bg-white p-3 rounded-lg shadow-sm">
+                <div key={booking.id} className="flex items-center justify-between text-sm bg-white p-3 rounded-lg shadow-sm border">
                   <div className="flex items-center space-x-3">
-                    <div className={`text-xs px-2 py-1 rounded-full font-medium ${
-                      booking.platform === 'airbnb' ? 'bg-cyan-100 text-cyan-700' : 'bg-purple-100 text-purple-700'
-                    }`}>
-                      {booking.platform.toUpperCase()}
+                    <div className="flex items-center space-x-2">
+                      <div className="flex-shrink-0">
+                        {booking.platform === 'airbnb' ? (
+                          booking.guest_name.includes('Not available') ? (
+                            <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-sm">
+                              <span className="text-red-500 text-sm font-bold">✕</span>
+                            </div>
+                          ) : (
+                            <img 
+                              src={logoAirbnb.src} 
+                              alt="Airbnb" 
+                              className="w-5 h-5 object-contain"
+                            />
+                          )
+                        ) : (
+                          <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-sm">
+                            <span className="text-purple-500 text-sm">📅</span>
+                          </div>
+                        )}
+                      </div>
+                      <div className={`text-xs px-2 py-1 rounded-full font-medium ${
+                        booking.platform === 'airbnb' 
+                          ? booking.guest_name.includes('Not available')
+                            ? 'bg-red-100 text-red-700' 
+                            : 'bg-cyan-100 text-cyan-700'
+                          : 'bg-purple-100 text-purple-700'
+                      }`}>
+                        {booking.platform === 'airbnb' 
+                          ? booking.guest_name.includes('Not available') 
+                            ? 'BLOQUÉ' 
+                            : 'AIRBNB'
+                          : booking.platform.toUpperCase()
+                        }
+                      </div>
                     </div>
                     <div>
                       <div className="font-medium text-gray-900">
-                        {booking.guest_name.replace('Airbnb (Not available)', 'Indisponible')}
+                        {booking.guest_name.includes('Not available') 
+                          ? 'Période bloquée' 
+                          : booking.guest_name === 'Reserved' 
+                            ? 'Réservation confirmée' 
+                            : booking.guest_name
+                        }
                       </div>
-                      <div className="text-gray-500 text-xs">
-                        {properties.find(p => p.id === booking.property_id)?.name}
+                      <div className="text-gray-500 text-xs flex items-center space-x-1">
+                        <span>{properties.find(p => p.id === booking.property_id)?.name}</span>
+                        <span>•</span>
+                        <span>{new Date(booking.check_out).getDate() - new Date(booking.check_in).getDate()} nuit(s)</span>
                       </div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-gray-500 font-medium">
                       {new Date(booking.check_in).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' })}
+                    </div>
+                    <div className="text-xs text-gray-400">
+                      → {new Date(booking.check_out).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' })}
                     </div>
                   </div>
                 </div>
