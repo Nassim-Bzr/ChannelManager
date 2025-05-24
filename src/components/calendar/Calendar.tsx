@@ -212,7 +212,7 @@ export default function Calendar({ events = [] }: CalendarProps) {
               }`}
             >
               <CalendarDaysIcon className="w-4 h-4 inline mr-2" />
-              Simple
+              Simple  
             </button>
           </div>
         </div>
