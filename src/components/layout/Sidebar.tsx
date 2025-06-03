@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
@@ -46,6 +47,7 @@ const menuItems: MenuItem[] = [
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const pathname = usePathname();
+  const { signOut } = useAuth();
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
@@ -95,13 +97,13 @@ export default function Sidebar() {
       </nav>
       
       <div className="border-t border-gray-200 p-4">
-        <Link
-          href="/auth"
-          className="flex items-center p-2 text-red-500 hover:bg-red-50 rounded-md"
+        <button
+          onClick={signOut}
+          className="flex items-center p-2 text-red-500 hover:bg-red-50 rounded-md w-full text-left"
         >
           <LogOut size={collapsed ? 22 : 18} />
           {!collapsed && <span className="ml-3">Déconnexion</span>}
-        </Link>
+        </button>
       </div>
     </aside>
   );
